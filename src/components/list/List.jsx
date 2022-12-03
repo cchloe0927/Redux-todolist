@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./List.module.css";
 import Todo from "../todo/Todo";
 
-const Contents = (props) => {
+const List = (props) => {
   //console.log('props', props);
   const isWorking = props.todosData.filter((work) => work.progress === true);
   const isDone = props.todosData.filter((work) => work.progress === false);
@@ -49,4 +49,4 @@ const Contents = (props) => {
   );
 };
 
-export default Contents;
+export default List;

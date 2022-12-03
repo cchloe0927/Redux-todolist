@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Todo.module.css";
 
-const ContentsCard = ({ todo, deleteTdosData, progressData, buttonName }) => {
+const Todo = ({ todo, deleteTdosData, progressData, buttonName }) => {
   //console.log('todo: ', todo);
   //console.log('deleteTdosData: ', deleteTdosData);
   //console.log('progressData: ', progressData);
@@ -29,4 +29,4 @@ const ContentsCard = ({ todo, deleteTdosData, progressData, buttonName }) => {
   );
 };
 
-export default ContentsCard;
+export default Todo;

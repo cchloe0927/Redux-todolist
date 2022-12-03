@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classes from "./Form.module.css";
 
-const AddContents = (props) => {
+const Form = (props) => {
   //state를 하나로 관리하면 좋은 점 : 결국 값이 바뀔 때 한번만 렌더링 하면됌!
   const [addTodo, setAddTodo] = useState({
     title: "",
@@ -93,4 +93,4 @@ const AddContents = (props) => {
   );
 };
 
-export default AddContents;
+export default Form;

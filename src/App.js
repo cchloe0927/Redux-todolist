@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import './App.css';
-import { v4 as uuidv4 } from 'uuid'; //고유 id값 주기 위한 라이브러리 (설치해야함)
+import React, { useState } from "react";
+import "./App.css";
+import { v4 as uuidv4 } from "uuid"; //고유 id값 주기 위한 라이브러리 (설치해야함)
 //component
-import Header from './components/Header';
-import AddContents from './components/AddContents';
-import Contents from './components/Contents';
+import Header from "./components/header/Header";
+import Form from "./components/form/Form";
+import List from "./components/list/List";
 
 function App() {
   const [todos, setTodos] = useState([
     {
       id: 1,
-      title: '리액트 공부하기',
-      contents: '리액트 기초를 마스터 하자!',
+      title: "리액트 공부하기",
+      contents: "리액트 기초를 마스터 하자!",
       progress: true,
     },
   ]);
@@ -43,10 +43,10 @@ function App() {
   };
 
   return (
-    <div className='wrap'>
+    <div className="wrap">
       <Header />
-      <AddContents onSaveTodosData={onSavedTodo} />
-      <Contents
+      <Form onSaveTodosData={onSavedTodo} />
+      <List
         todosData={todos}
         deleteTdosData={onDeletedTodo}
         progressData={onProgressTodo}

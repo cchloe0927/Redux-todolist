@@ -1,6 +1,6 @@
-import React from 'react';
-import classes from './Contents.module.css';
-import ContentsCard from './ContentsCard';
+import React from "react";
+import classes from "./List.module.css";
+import Todo from "../todo/Todo";
 
 const Contents = (props) => {
   //console.log('props', props);
@@ -17,12 +17,12 @@ const Contents = (props) => {
         <div className={classes.contents_box}>
           {isWorking.map((todo) => {
             return (
-              <ContentsCard
+              <Todo
                 key={todo.id}
                 todo={todo}
                 deleteTdosData={props.deleteTdosData}
                 progressData={props.progressData}
-                buttonName='완료'
+                buttonName="완료"
               />
             );
           })}
@@ -34,12 +34,12 @@ const Contents = (props) => {
         <div className={classes.contents_box}>
           {isDone.map((todo) => {
             return (
-              <ContentsCard
+              <Todo
                 key={todo.id}
                 todo={todo}
                 deleteTdosData={props.deleteTdosData}
                 progressData={props.progressData}
-                buttonName='취소'
+                buttonName="취소"
               />
             );
           })}

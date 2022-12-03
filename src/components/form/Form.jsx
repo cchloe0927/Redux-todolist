@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import classes from './AddContents.module.css';
+import React, { useState } from "react";
+import classes from "./Form.module.css";
 
 const AddContents = (props) => {
   //state를 하나로 관리하면 좋은 점 : 결국 값이 바뀔 때 한번만 렌더링 하면됌!
   const [addTodo, setAddTodo] = useState({
-    title: '',
-    contents: '',
+    title: "",
+    contents: "",
     //빈 값인 경우, alert 대신 CSS 변경
     isTitleValid: true, //true: 기본 false: 빈 값(레드컬러 처리)
     isContentsValid: true,
@@ -25,11 +25,11 @@ const AddContents = (props) => {
     // }
 
     //event.target.value값이 변경 될 때마다도 빈값인 경우 / 아닌 경우 border 색상 변경해 주기
-    if (name === 'title' && value) {
+    if (name === "title" && value) {
       setAddTodo({ ...addTodo, isTitleValid: true, [name]: value });
-    } else if (name === 'contents' && value) {
+    } else if (name === "contents" && value) {
       setAddTodo({ ...addTodo, isContentsValid: true, [name]: value });
-    } else if (name === 'title' && !value) {
+    } else if (name === "title" && !value) {
       setAddTodo({ ...addTodo, isTitleValid: false, [name]: value });
     } else {
       setAddTodo({ ...addTodo, isContentsValid: false, [name]: value });
@@ -39,10 +39,10 @@ const AddContents = (props) => {
   const addTodoHandler = (event) => {
     event.preventDefault();
     //빈 값인 경우 alert 띄어 주기 -> 현업에서는 alert은 브라우저 작동을 멈추기 때문에 잘 사용 안함!
-    if (addTodo.title === '') {
+    if (addTodo.title === "") {
       setAddTodo({ ...addTodo, isTitleValid: false });
       // return;
-    } else if (addTodo.contents === '') {
+    } else if (addTodo.contents === "") {
       setAddTodo({ ...addTodo, isContentsValid: false });
       // return;
     } else {
@@ -54,8 +54,8 @@ const AddContents = (props) => {
       props.onSaveTodosData(newTodo);
       //저장 후 input 내용 빈 값 처리
       setAddTodo({
-        title: '',
-        contents: '',
+        title: "",
+        contents: "",
         isTitleValid: true,
         isContentsValid: true,
       });
@@ -65,25 +65,25 @@ const AddContents = (props) => {
   return (
     <form className={classes.add} onSubmit={addTodoHandler}>
       <div className={classes.contents}>
-        <label htmlFor='title'>제목</label>
+        <label htmlFor="title">제목</label>
         <input
           className={`${
             !addTodo.isTitleValid ? classes.invalid : classes.input
           }`}
-          id='title'
-          name='title'
-          type='text'
+          id="title"
+          name="title"
+          type="text"
           onChange={onChangeHandleInput}
           value={addTodo.title}
         />
-        <label htmlFor='contents'>내용</label>
+        <label htmlFor="contents">내용</label>
         <input
           className={`${
             !addTodo.isContentsValid ? classes.invalid : classes.input
           }`}
-          id='contents'
-          name='contents'
-          type='text'
+          id="contents"
+          name="contents"
+          type="text"
           onChange={onChangeHandleInput}
           value={addTodo.contents}
         />

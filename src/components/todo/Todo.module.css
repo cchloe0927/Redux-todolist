@@ -1,68 +1,87 @@
 .contents_card {
-    border: 2.5px solid #839EF7;
-    border-radius: 6px;
-    width: 320px;
-    height: 170px;
-    padding: 20px;
+  border: 2.5px solid #839ef7;
+  border-radius: 6px;
+  width: 320px;
+  height: 170px;
+  padding: 10px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.linkBtn {
+  height: 28px;
+  border: 1px solid #eee;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all ease 1s;
+}
+.linkBtn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .contents_title {
-    margin: 5px 0;
+  margin: 7px 0;
 }
 
 .contents_text {
-    width: 100%;
-    height: 60px;
-    overflow: auto;
+  width: 100%;
+  height: 80px;
+  overflow: auto;
+  margin: 0px;
 }
 
 p {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .btn {
-    display: flex;
-    justify-content: space-around;
-    /* justify-content: flex-end; */
-    gap: 20px;
-    padding: 0px 10px;
+  display: flex;
+  justify-content: space-around;
+  /* justify-content: flex-end; */
+  gap: 20px;
+  padding: 0px 10px;
 }
 
 .deleteBtn {
-    width: 100%;
-    height: 35px;
-    background-color: transparent;
-    font-weight: 500;
-    border: 2px solid #eee;
-    border-radius: 6px;
-    font-size: 16px;
+  width: 100%;
+  height: 35px;
+  background-color: transparent;
+  font-weight: 500;
+  border: 2px solid #eee;
+  border-radius: 6px;
+  font-size: 16px;
 }
 .deleteBtn:hover {
-    cursor: pointer;
-    border: 2px solid #eee;
-    background-color: #eee;
+  cursor: pointer;
+  border: 2px solid #eee;
+  background-color: #eee;
 }
 
 .doneBtn {
-    width: 100%;
-    height: 35px;
-    background-color: transparent;
-    border: 2px solid #839EF7;
-    background-color: #839EF7;
-    color : white;
-    font-weight: 500;
-    border-radius: 6px;
-    font-size: 16px;
+  width: 100%;
+  height: 35px;
+  background-color: transparent;
+  border: 2px solid #839ef7;
+  background-color: #839ef7;
+  color: white;
+  font-weight: 500;
+  border-radius: 6px;
+  font-size: 16px;
 }
 .doneBtn:hover {
-    cursor: pointer;
-    border: 2px solid #7390EF;
-    background-color: #7390EF;
+  cursor: pointer;
+  border: 2px solid #7390ef;
+  background-color: #7390ef;
 }
 
 /*반응형*/
 @media screen and (max-width: 800px) {
-    .contents_card  {
-        width: 87%;
-    }
+  .contents_card {
+    width: 87%;
+  }
 }

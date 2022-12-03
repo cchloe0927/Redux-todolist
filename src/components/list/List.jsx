@@ -1,8 +1,10 @@
 import React from "react";
 import classes from "./List.module.css";
 import Todo from "../todo/Todo";
+// import { useNavigate } from "react-router-dom";
 
 const List = (props) => {
+  // const navigate = useNavigate();
   //console.log('props', props);
   const isWorking = props.todosData.filter((work) => work.progress === true);
   const isDone = props.todosData.filter((work) => work.progress === false);
@@ -23,6 +25,9 @@ const List = (props) => {
                 deleteTdosData={props.deleteTdosData}
                 progressData={props.progressData}
                 buttonName="완료"
+                // onClick={() => {
+                //   navigate("/detail");
+                // }}
               />
             );
           })}

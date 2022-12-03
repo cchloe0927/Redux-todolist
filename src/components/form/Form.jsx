@@ -13,7 +13,7 @@ const Form = (props) => {
 
   //input 값 추출(전체) 장점 : 이벤트 핸들러 함수를 하나 만들어서 재사용할 수 있음
   const onChangeHandleInput = (event) => {
-    console.log(event.target);
+    //console.log(event.target);
     const { name, value } = event.target;
     //cosnt name = event.target.value -> name이 결국 title 또는 contents
 

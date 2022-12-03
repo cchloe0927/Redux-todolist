@@ -1,7 +1,9 @@
 import React from "react";
 import classes from "./Todo.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Todo = ({ todo, deleteTdosData, progressData, buttonName }) => {
+  const navigator = useNavigate();
   //console.log('todo: ', todo);
   //console.log('deleteTdosData: ', deleteTdosData);
   //console.log('progressData: ', progressData);
@@ -9,7 +11,17 @@ const Todo = ({ todo, deleteTdosData, progressData, buttonName }) => {
 
   return (
     <div className={classes.contents_card}>
-      <h2 className={classes.contents_title}>{todo.title}</h2>
+      <div className={classes.top}>
+        <h2 className={classes.contents_title}>{todo.title}</h2>
+        <button
+          className={classes.linkBtn}
+          onClick={() => {
+            navigator(`detail/${todo.id}`);
+          }}
+        >
+          상세보기
+        </button>
+      </div>
       <p className={classes.contents_text}>{todo.contents}</p>
       <div className={classes.btn}>
         <button

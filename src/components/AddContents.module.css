@@ -1,0 +1,77 @@
+.add {
+    background-color: #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-radius: 5px;
+    height: 50px;
+}
+
+.contents {
+    width: 65%;
+}
+
+label {
+    font-weight: bold;
+    margin-right: 20px;
+    font-size: 18px;
+}
+
+.input {
+    margin-right: 20px;
+    width: 250px;
+    height: 30px;
+    border-radius: 6px;
+    border:1px solid #eee;
+    outline: none;
+}
+.invalid {
+    margin-right: 20px;
+    width: 250px;
+    height: 30px;
+    border-radius: 6px;
+    border:1.5px solid #F54445;
+    outline: none;
+}
+
+.addBtn {
+    padding: 5px;
+    background-color: #4265D6;
+    color: white;
+    font-weight: bold;
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: none;
+}
+.addBtn:hover {
+    cursor: pointer;
+}
+
+/*반응형*/
+@media screen and (max-width: 800px) {
+    .add {
+        height: 100px;
+        align-items: flex-end; /*포지션이을 최대한 지양하자!*/
+        /* position: relative; */
+    }
+    form .contents {
+        display: flex;
+        flex-direction: column;
+    }
+    form .contents input {
+        width: 100%
+    }
+    form .addBtn {
+        height: 50px;
+        /* position: absolute; */
+        /* right: 20px;
+        bottom: 15px; */
+        width: 80px;
+        height: 35px;
+        font-size: 14px;
+        display: block;
+    }
+   }

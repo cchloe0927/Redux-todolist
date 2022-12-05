@@ -1,21 +1,29 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+//redux state
+import { useSelector } from "react-redux";
 
 const DetailTodo = () => {
-  // const params = useParams(); //리덕스를 통해서 todolist 데이터를 받아와서 Map을 통해 해당 todo 보여줄 예정
+  const params = useParams(); //파라미터 값과 리덕스를 통해서 받아온 데이터의 id값일 일치하면 화면에 뿌리기
+  console.log("params.id :", typeof params.id, params.id);
+  //값 읽어오기
+  const todosData = useSelector((state) => state.todos.todoList);
+  const [todoID] = todosData.filter((item) => String(item.id) === params.id);
+  console.log("todoID: ", todoID);
+
   return (
     <Todowrap>
       <TodoBox>
         <Header>
-          <TodoId>Todo Id</TodoId>
+          <TodoId>{todoID.id}</TodoId>
           <Link to="/">
             <Btn>이전으로</Btn>
           </Link>
         </Header>
         <Body>
-          <h2>테스트</h2>
-          <p>테스트 중입니다.</p>
+          <h2>{todoID.title}</h2>
+          <p>{todoID.contents}</p>
         </Body>
       </TodoBox>
     </Todowrap>
@@ -24,6 +32,7 @@ const DetailTodo = () => {
 
 export default DetailTodo;
 
+//styled-components
 const Todowrap = styled.div`
   width: 100vw;
   height: 100vh;

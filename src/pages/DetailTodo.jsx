@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 const DetailTodo = () => {
+  // const params = useParams(); //리덕스를 통해서 todolist 데이터를 받아와서 Map을 통해 해당 todo 보여줄 예정
   return (
     <Todowrap>
       <TodoBox>

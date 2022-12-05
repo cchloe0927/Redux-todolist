@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 
 //redux
-import { useDispatch } from "react-redux";
-import { addTodos } from "../redux/modules/todos";
+import { useDispatch, useSelector } from "react-redux";
+// import { addTodos } from "../redux/modules/todos";
 
 //component
 import Layout from "../components/layout/Layout";
@@ -12,47 +12,49 @@ import Form from "../components/form/Form";
 import List from "../components/list/List";
 
 function TodoList() {
+  //값 읽어오기
+  const todosData = useSelector((state) => state.todos.todoList);
+  console.log("todosData: ", todosData);
   //dispatch 세팅 작업
   const dispatch = useDispatch();
-  //todoList state
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      title: "리액트 공부하기",
-      contents: "리액트 기초를 마스터 하자!",
-      progress: true,
-    },
-  ]);
   //todo 고유 ID state (상세페이지에서 보여지기 때문에 state로 관리)
-  const [todoId, setTodoId] = useState(2);
+  const [todoId, setTodoId] = useState(1);
 
   //todo 추가하기
   const onSavedTodo = (newTodo) => {
-    dispatch(addTodos());
-    const todosData = {
+    const newTodos = {
       ...newTodo,
       id: todoId,
       progress: true,
     };
-    setTodos([...todos, todosData]);
+    dispatch({
+      type: "ADD_TODOS",
+      payload: newTodos,
+    });
     setTodoId(todoId + 1); //원시값은 상관없음
   };
 
   //todo 삭제하기
   const onDeletedTodo = (id) => {
-    //console.log(id);
-    const newTodoList = todos.filter((todo) => todo.id !== id);
-    setTodos(newTodoList);
+    const newTodoList = todosData.filter((todo) => todo.id !== id);
+    dispatch({
+      type: "DELETE_TODOS",
+      payload: newTodoList,
+    });
   };
+
   //todo 상태값 변경하기
   const onProgressTodo = (id, progress) => {
-    console.log(id);
-    const todos_index = todos.findIndex((todo) => todo.id === id); //조건이 충족하는 인덱스 번호를 구함
+    //console.log(id);
+    const todos_index = todosData.findIndex((todo) => todo.id === id); //조건이 충족하는 인덱스 번호를 구함
     //console.log('todos_index: ', todos_index);
     progress
-      ? (todos[todos_index].progress = false)
-      : (todos[todos_index].progress = true);
-    setTodos([...todos]);
+      ? (todosData[todos_index].progress = false)
+      : (todosData[todos_index].progress = true);
+
+    dispatch({
+      type: "PROGRESS_TODOS",
+    });
   };
 
   return (
@@ -60,7 +62,7 @@ function TodoList() {
       <Header />
       <Form onSaveTodosData={onSavedTodo} />
       <List
-        todosData={todos}
+        todosData={todosData}
         deleteTdosData={onDeletedTodo}
         progressData={onProgressTodo}
       />
@@ -69,59 +71,3 @@ function TodoList() {
 }
 
 export default TodoList;
-
-// function TodoList() {
-//   //todoList state
-//   const [todos, setTodos] = useState([
-//     {
-//       id: 1,
-//       title: "리액트 공부하기",
-//       contents: "리액트 기초를 마스터 하자!",
-//       progress: true,
-//     },
-//   ]);
-//   //todo 고유 ID state (상세페이지에서 보여지기 때문에 state로 관리)
-//   const [todoId, setTodoId] = useState(2);
-
-//   //todo 추가하기
-//   const onSavedTodo = (newTodo) => {
-//     const todosData = {
-//       ...newTodo,
-//       id: todoId,
-//       progress: true,
-//     };
-//     setTodos([...todos, todosData]);
-//     console.log("todosData: ", todosData);
-//     setTodoId(todoId + 1); //원시값은 상관없음
-//   };
-//   //todo 삭제하기
-//   const onDeletedTodo = (id) => {
-//     //console.log(id);
-//     const newTodoList = todos.filter((todo) => todo.id !== id);
-//     setTodos(newTodoList);
-//   };
-//   //todo 상태값 변경하기
-//   const onProgressTodo = (id, progress) => {
-//     console.log(id);
-//     const todos_index = todos.findIndex((todo) => todo.id === id); //조건이 충족하는 인덱스 번호를 구함
-//     //console.log('todos_index: ', todos_index);
-//     progress
-//       ? (todos[todos_index].progress = false)
-//       : (todos[todos_index].progress = true);
-//     setTodos([...todos]);
-//   };
-
-//   return (
-//     <Layout>
-//       <Header />
-//       <Form onSaveTodosData={onSavedTodo} />
-//       <List
-//         todosData={todos}
-//         deleteTdosData={onDeletedTodo}
-//         progressData={onProgressTodo}
-//       />
-//     </Layout>
-//   );
-// }
-
-// export default TodoList;

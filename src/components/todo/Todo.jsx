@@ -1,13 +1,41 @@
 import React from "react";
 import classes from "./Todo.module.css";
 import { useNavigate } from "react-router-dom";
+//redux state
+import { useDispatch, useSelector } from "react-redux";
 
-const Todo = ({ todo, deleteTdosData, progressData, buttonName }) => {
+const Todo = ({ todo, buttonName }) => {
+  //컴포넌트 내에서 페이지 이동
   const navigator = useNavigate();
-  //console.log('todo: ', todo);
-  //console.log('deleteTdosData: ', deleteTdosData);
-  //console.log('progressData: ', progressData);
-  //console.log('buttonName: ', buttonName);
+  //dispatch 세팅 작업
+  const dispatch = useDispatch();
+  //값 읽어오기
+  const todosData = useSelector((state) => state.todos.todoList);
+  //console.log("todosData: ", todosData);
+
+  //todo 삭제하기
+  const onDeletedTodo = (id) => {
+    console.log(id);
+    const newTodoList = todosData.filter((todo) => todo.id !== id);
+    dispatch({
+      type: "DELETE_TODOS",
+      payload: newTodoList,
+    });
+  };
+
+  //todo 상태값 변경하기
+  const onProgressTodo = (id, progress) => {
+    //console.log(id);
+    const todos_index = todosData.findIndex((todo) => todo.id === id); //조건이 충족하는 인덱스 번호를 구함
+    //console.log('todos_index: ', todos_index);
+    progress
+      ? (todosData[todos_index].progress = false)
+      : (todosData[todos_index].progress = true);
+
+    dispatch({
+      type: "PROGRESS_TODOS",
+    });
+  };
 
   return (
     <div className={classes.contents_card}>
@@ -26,13 +54,13 @@ const Todo = ({ todo, deleteTdosData, progressData, buttonName }) => {
       <div className={classes.btn}>
         <button
           className={classes.deleteBtn}
-          onClick={() => deleteTdosData(todo.id)}
+          onClick={() => onDeletedTodo(todo.id)}
         >
           삭제
         </button>
         <button
           className={classes.doneBtn}
-          onClick={() => progressData(todo.id, todo.progress)}
+          onClick={() => onProgressTodo(todo.id, todo.progress)}
         >
           {buttonName}
         </button>

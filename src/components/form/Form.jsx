@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import classes from "./Form.module.css";
+//redux
+import { useDispatch } from "react-redux";
 
-const Form = (props) => {
-  //state를 하나로 관리하면 좋은 점 : 결국 값이 바뀔 때 한번만 렌더링 하면됌!
+const Form = () => {
+  //dispatch 세팅 작업
+  const dispatch = useDispatch();
+  //todo 고유ID state (상세페이지에서 보여지는 Id를 위해 state로 관리)
+  const [todoId, setTodoId] = useState(1);
+  //빈 값인 경우 추가 안됌 & 추가 시 빈 값으로 만들기 -> state를 하나로 관리하면 좋은 점 : 결국 값이 바뀔 때 한번만 렌더링 하면됌!
   const [addTodo, setAddTodo] = useState({
     title: "",
     contents: "",
-    //빈 값인 경우, alert 대신 CSS 변경
     isTitleValid: true, //true: 기본 false: 빈 값(레드컬러 처리)
     isContentsValid: true,
   });
@@ -16,13 +21,6 @@ const Form = (props) => {
     //console.log(event.target);
     const { name, value } = event.target;
     //cosnt name = event.target.value -> name이 결국 title 또는 contents
-
-    // 예외 조건 경우의 수
-    // if (name === 'title' && value) {
-    // } else if (name === 'title' && !value) {
-    // } else if (name === 'contents' && value) {
-    // } else if (name === 'contents' && !value) {
-    // }
 
     //event.target.value값이 변경 될 때마다도 빈값인 경우 / 아닌 경우 border 색상 변경해 주기
     if (name === "title" && value) {
@@ -38,20 +36,24 @@ const Form = (props) => {
 
   const addTodoHandler = (event) => {
     event.preventDefault();
-    //빈 값인 경우 alert 띄어 주기 -> 현업에서는 alert은 브라우저 작동을 멈추기 때문에 잘 사용 안함!
     if (addTodo.title === "") {
       setAddTodo({ ...addTodo, isTitleValid: false });
-      // return;
     } else if (addTodo.contents === "") {
       setAddTodo({ ...addTodo, isContentsValid: false });
-      // return;
     } else {
       // 추가 버튼 클릭 시, 새로운 Todo 카드 생성
-      const newTodo = {
+      const newTodos = {
         title: addTodo.title,
         contents: addTodo.contents,
+        id: todoId,
+        progress: true,
       };
-      props.onSaveTodosData(newTodo);
+      dispatch({
+        type: "ADD_TODOS",
+        payload: newTodos,
+      });
+      setTodoId(todoId + 1); //원시값은 상관없음
+
       //저장 후 input 내용 빈 값 처리
       setAddTodo({
         title: "",

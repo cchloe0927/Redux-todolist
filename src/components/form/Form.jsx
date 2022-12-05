@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import classes from "./Form.module.css";
 //redux
 import { useDispatch } from "react-redux";
+import { addTodos } from "../../redux/modules/todos";
 
 const Form = () => {
   //dispatch 세팅 작업
   const dispatch = useDispatch();
   //todo 고유ID state (상세페이지에서 보여지는 Id를 위해 state로 관리)
   const [todoId, setTodoId] = useState(1);
-  //빈 값인 경우 추가 안됌 & 추가 시 빈 값으로 만들기 -> state를 하나로 관리하면 좋은 점 : 결국 값이 바뀔 때 한번만 렌더링 하면됌!
+  //추가 시 빈 값으로 만들기 & 빈 값인 경우 추가 안됌 -> state를 하나로 관리하면 좋은 점 : 결국 값이 바뀔 때 한번만 렌더링 하면됌!
   const [addTodo, setAddTodo] = useState({
     title: "",
     contents: "",
@@ -48,10 +49,7 @@ const Form = () => {
         id: todoId,
         progress: true,
       };
-      dispatch({
-        type: "ADD_TODOS",
-        payload: newTodos,
-      });
+      dispatch(addTodos(newTodos));
       setTodoId(todoId + 1); //원시값은 상관없음
 
       //저장 후 input 내용 빈 값 처리

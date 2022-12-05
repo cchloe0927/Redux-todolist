@@ -3,6 +3,8 @@ import classes from "./Todo.module.css";
 import { useNavigate } from "react-router-dom";
 //redux state
 import { useDispatch, useSelector } from "react-redux";
+import { deleteTodos } from "../../redux/modules/todos";
+import { progressTodos } from "../../redux/modules/todos";
 
 const Todo = ({ todo, buttonName }) => {
   //컴포넌트 내에서 페이지 이동
@@ -17,10 +19,7 @@ const Todo = ({ todo, buttonName }) => {
   const onDeletedTodo = (id) => {
     console.log(id);
     const newTodoList = todosData.filter((todo) => todo.id !== id);
-    dispatch({
-      type: "DELETE_TODOS",
-      payload: newTodoList,
-    });
+    dispatch(deleteTodos(newTodoList));
   };
 
   //todo 상태값 변경하기
@@ -32,9 +31,7 @@ const Todo = ({ todo, buttonName }) => {
       ? (todosData[todos_index].progress = false)
       : (todosData[todos_index].progress = true);
 
-    dispatch({
-      type: "PROGRESS_TODOS",
-    });
+    dispatch(progressTodos());
   };
 
   return (

@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const List = () => {
   //값 읽어오기
   const todosData = useSelector((state) => state.todos.todoList);
-  //console.log("todosData: ", todosData);
+  console.log("todosData: ", todosData);
   const isWorking = todosData.filter((work) => work.progress === true);
   const isDone = todosData.filter((work) => work.progress === false);
   //console.log('isWorking', isWorking);

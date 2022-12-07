@@ -12,10 +12,18 @@ export const addTodos = (newTodos) => {
     payload: newTodos,
   };
 };
-export const deleteTodos = (newTodoList) => {
+//1. 만들어진 데이터를 가져와서 state 변경
+// export const deleteTodos = (newTodoList) => {
+//   return {
+//     type: DELETE_TODOS,
+//     payload: newTodoList,
+//   };
+// };
+//2. 필요한 값만 값아와서 리듀서에서 데이터 만듦
+export const deleteTodos = (id) => {
   return {
     type: DELETE_TODOS,
-    payload: newTodoList,
+    payload: id,
   };
 };
 export const progressTodos = () => {
@@ -26,7 +34,14 @@ export const progressTodos = () => {
 
 //Initial State
 const initialState = {
-  todoList: [],
+  todoList: [
+    {
+      title: "리덕스",
+      contents: "리덕스 내용",
+      progress: true,
+      id: 0,
+    },
+  ],
 };
 
 // Reducer 기본형태
@@ -36,21 +51,13 @@ const todos = (state = initialState, action) => {
     case ADD_TODOS:
       //console.log("ADD_TODOS 추가");
       return {
-        todoList: [
-          ...state.todoList,
-          {
-            title: action.payload.title,
-            contents: action.payload.contents,
-            id: action.payload.id,
-            progress: action.payload.progress,
-          },
-        ],
+        todoList: [...state.todoList, action.payload],
       };
     case DELETE_TODOS:
       //console.log("DELETE_TODOS 삭제");
       //console.log(action.payload);
       return {
-        todoList: [...action.payload],
+        todoList: state.todoList.filter((todo) => todo.id !== action.payload),
       };
     case PROGRESS_TODOS:
       //console.log("PROGRESS_TODOS 상태변경");

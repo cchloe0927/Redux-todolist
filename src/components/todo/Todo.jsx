@@ -16,10 +16,16 @@ const Todo = ({ todo, buttonName }) => {
   //console.log("todosData: ", todosData);
 
   //todo 삭제하기
+  //1. 여기서 데이터를 만들고 리듀서에 전달
+  // const onDeletedTodo = (id) => {
+  //   //console.log(id);
+  //   const newTodoList = todosData.filter((todo) => todo.id !== id);
+  //   dispatch(deleteTodos(newTodoList));
+  // };
+  //2. 삭제하기 위해 해당 todo의 id만 넘겨주고 리듀서에서 배열 재구성
   const onDeletedTodo = (id) => {
     //console.log(id);
-    const newTodoList = todosData.filter((todo) => todo.id !== id);
-    dispatch(deleteTodos(newTodoList));
+    dispatch(deleteTodos(id));
   };
 
   //todo 상태값 변경하기

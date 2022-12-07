@@ -4,12 +4,12 @@
 <br>
 *예시 사이트 : http://todolistwithreduxassignment.s3-website.ap-northeast-2.amazonaws.com/
 <br>
-*구현 사이트(배포) : 
+*구현 사이트(배포) : https://redux-todo-list-silk.vercel.app/
 
 ## Constraints
 1. todos 데이터는 리덕스를 사용해서 전역으로 상태를 관리합니다.
 2. todos 모듈은 Ducks 패턴으로 구현합니다.
-3. 상세보기 클릭하면 Todo의 상세 페이지로 이동합니다. 상세 페이지에서 보여야 하는 내용은 아래 토글에서 별도 안내합니다.
+3. 상세보기 클릭하면 Todo의 상세 페이지로 이동합니다.
 
 ## Function
 - Create Todo
@@ -35,7 +35,7 @@ https://user-images.githubusercontent.com/96729804/204094697-5df18463-a560-4590-
 
 
 ## Components구조
-<b>Header / Todo 추가 / Todo List가 보여지는 부분 / 각 해당 Todo</b>
+<b>Header / Todo 추가(Form.jsx) / Todo List가 보여지는 부분(List.jsx) / 각 해당 Todo(Todo.jsx)</b>
 
 | 컴포넌트 구조 시각화 |
 |:------:|
@@ -64,7 +64,7 @@ https://user-images.githubusercontent.com/96729804/204094697-5df18463-a560-4590-
 ## Redux상태관리
 <b>전역 관리 되는 state</b>
 
-> Todos - AddContents 컴포넌트
-
+> ADD_TODOS / DELETE_TODOS / PROGRESS_TODOS - List 컴포넌트, Todo 컴포넌트, Detail 페이지 컴포넌트에서 state를 구독 
+ 
 
 

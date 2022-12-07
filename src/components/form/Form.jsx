@@ -23,7 +23,7 @@ const Form = () => {
     const { name, value } = event.target;
     //cosnt name = event.target.value -> name이 결국 title 또는 contents
 
-    //event.target.value값이 변경 될 때마다도 빈값인 경우 / 아닌 경우 border 색상 변경해 주기
+    //e.target.value값이 변경 될 때마다도 Input 예외처리
     if (name === "title" && value) {
       setAddTodo({ ...addTodo, isTitleValid: true, [name]: value });
     } else if (name === "contents" && value) {

@@ -17,7 +17,7 @@ const Todo = ({ todo, buttonName }) => {
 
   //todo 삭제하기
   const onDeletedTodo = (id) => {
-    console.log(id);
+    //console.log(id);
     const newTodoList = todosData.filter((todo) => todo.id !== id);
     dispatch(deleteTodos(newTodoList));
   };

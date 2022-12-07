@@ -34,7 +34,7 @@ const todos = (state = initialState, action) => {
   //console.log("action 값 확인: ", action);
   switch (action.type) {
     case ADD_TODOS:
-      console.log("ADD_TODOS 추가");
+      //console.log("ADD_TODOS 추가");
       return {
         todoList: [
           ...state.todoList,
@@ -47,13 +47,13 @@ const todos = (state = initialState, action) => {
         ],
       };
     case DELETE_TODOS:
-      console.log("DELETE_TODOS 삭제");
-      console.log(action.payload);
+      //console.log("DELETE_TODOS 삭제");
+      //console.log(action.payload);
       return {
         todoList: [...action.payload],
       };
     case PROGRESS_TODOS:
-      console.log("PROGRESS_TODOS 상태변경");
+      //console.log("PROGRESS_TODOS 상태변경");
       return {
         todoList: [...state.todoList],
       };

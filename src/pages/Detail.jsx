@@ -6,11 +6,11 @@ import { useSelector } from "react-redux";
 
 const DetailTodo = () => {
   const params = useParams(); //파라미터 값과 리덕스를 통해서 받아온 데이터의 id값일 일치하면 화면에 뿌리기
-  console.log("params.id :", typeof params.id, params.id);
+  //console.log("params.id :", typeof params.id, params.id);
   //값 읽어오기
   const todosData = useSelector((state) => state.todos.todoList);
   const [todoID] = todosData.filter((item) => String(item.id) === params.id);
-  console.log("todoID: ", todoID);
+  //console.log("todoID: ", todoID);
 
   return (
     <Todowrap>
